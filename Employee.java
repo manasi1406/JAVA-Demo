@@ -22,7 +22,7 @@ class Trainee extends Employee{
         System.out.println("And I worked on "   + Technology + " Technology");
     }
 }
-class Main{
+class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the Trainee's name : ");
@@ -32,9 +32,11 @@ class Main{
         sc.nextLine();
         System.out.println("Enter the Trainee's Technology : ");
         String Technology = sc.nextLine();
-        Trainee T = new Trainee(Name, Age,Technology);
+        Trainee T = new Trainee(Name, Age, Technology);
         T.Introduce();
         T.work();
+
+
 
     }
 }
