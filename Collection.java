@@ -10,6 +10,7 @@ public class Collection {
         while ((num = scanner.nextInt()) != -1) {
             numbers.add(num);
         }
+
         System.out.println("Numbers are:");
         for (Integer number : numbers) {
             System.out.println(number);

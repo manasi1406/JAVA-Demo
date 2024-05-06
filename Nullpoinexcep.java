@@ -7,6 +7,7 @@ public class Nullpoinexcep {
         try {
             System.out.println(str.toUpperCase());
         }
+
         catch (NullPointerException e) {
             System.out.println("NullPointerException not detected");
         }

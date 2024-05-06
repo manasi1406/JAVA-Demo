@@ -7,7 +7,6 @@ public class ThrowThrows {
             System.out.println("File not found: " );
         }
     }
-
     public static void readFromFile(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (!file.exists()) {
