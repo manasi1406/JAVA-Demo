@@ -22,7 +22,7 @@ public class MiniActivity {
 
        // Group the names by their first character.
         Map<Character, List<String>> groupedNames = Arrays.stream(names).collect(Collectors.groupingBy(name -> name.charAt(0)));
-        System.out.println("Names grouped by first ch aracter: " + groupedNames);
+        System.out.println("Names grouped by first character: " + groupedNames);
 
         // Sort the names in ascending order ignoring case, and then collect them into a list.
         List<String> sortedNames = new ArrayList<>(Arrays.asList(names));
