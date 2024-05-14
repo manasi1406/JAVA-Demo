@@ -7,12 +7,12 @@ class BankAccount {
         this.balance = startingBalance;
     }
 
-    public synchronized void deposit(int amount) {
+    public  void deposit(int amount) {
         balance += amount;
         System.out.println(Thread.currentThread().getName() + " deposited " + amount + ". New balance: " + balance);
     }
 
-    public synchronized void withdraw(int amount) {
+    public  void withdraw(int amount) {
         if (balance >= amount) {
             balance -= amount;
             System.out.println(Thread.currentThread().getName() + " withdrew " + amount + ". New balance: " + balance);
