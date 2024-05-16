@@ -1,0 +1,66 @@
+CREATE DATABASE StudentDB;
+USE StudentDB;
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    BirthDate DATE,
+    Gender ENUM('Male', 'Female'),
+    EnrollmentDate DATE
+);
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY AUTO_INCREMENT,
+    CourseName VARCHAR(100),
+    Credits INT
+);
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY AUTO_INCREMENT,
+    StudentID INT,
+    CourseID INT,
+    EnrollmentDate DATE,
+    Grade ENUM('A', 'B', 'C', 'D', 'F', 'Incomplete'),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+INSERT INTO Students (FirstName, LastName, BirthDate, Gender, EnrollmentDate) VALUES
+('Manasi', 'Mhase', '2000-01-15', 'Female', '2018-09-01'),
+('Roshni', 'wagh', '1999-03-22', 'Female', '2017-09-01'),
+('Lily', 'Desai', '2001-07-30', 'Female', '2019-09-01');
+INSERT INTO Courses (CourseName, Credits) VALUES
+('ML', 4),
+('AI', 3),
+('Data Science', 4);
+INSERT INTO Enrollments (StudentID, CourseID, EnrollmentDate, Grade) VALUES
+(1, 1, '2018-09-05', 'A'),
+(2, 2, '2017-09-07', 'B'),
+(3, 3, '2019-09-10', 'A');
+
+SELECT s.FirstName, s.LastName, c.CourseName
+FROM Students s
+JOIN Enrollments e ON s.StudentID = e.StudentID
+JOIN Courses c ON e.CourseID = c.CourseID
+WHERE c.CourseName = 'ML';
+SELECT Gender, COUNT(*) AS Count
+FROM Students
+GROUP BY Gender;
+SELECT c.CourseName, s.FirstName, s.LastName
+FROM Courses c
+JOIN Enrollments e ON c.CourseID = e.CourseID
+JOIN Students s ON e.StudentID = s.StudentID;
+UPDATE Students
+SET LastName = 'Mhase'
+WHERE StudentID = 2;
+UPDATE Enrollments
+SET Grade = 'B'
+WHERE StudentID = 1 AND CourseID = 1;
+DELETE FROM Students
+WHERE StudentID = 3;
+DELETE FROM Courses
+WHERE CourseID = 2;
+SELECT s.FirstName, s.LastName
+FROM Students s
+LEFT JOIN Enrollments e ON s.StudentID = e.StudentID
+WHERE e.StudentID IS NULL;
+DROP TABLE IF EXISTS Enrollments;
+DROP DATABASE IF EXISTS StudentDB;
+
